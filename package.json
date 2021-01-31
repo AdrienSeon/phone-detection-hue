@@ -1,7 +1,7 @@
 {
   "name": "phone-detection-hue",
   "version": "1.0.0",
-  "description": "Detection du telephone pout allumer les lampes de l'appartement",
+  "description": "Detection du telephone pour allumer les lampes de l'appartement",
   "main": "app.js",
   "dependencies": {
     "net-ping": "^1.2.3",

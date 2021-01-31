@@ -1,2 +1,2 @@
 # phone-detection-hue
- Detection du telephone pout allumer les lampes de l'appartement
+ Detection du telephone pour allumer les lampes de l'appartement
