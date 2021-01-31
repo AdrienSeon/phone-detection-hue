@@ -1,0 +1,16 @@
+{
+  "name": "phone-detection-hue",
+  "version": "1.0.0",
+  "description": "Detection du telephone pout allumer les lampes de l'appartement",
+  "main": "app.js",
+  "dependencies": {
+    "net-ping": "^1.2.3",
+    "node-hue-api": "^4.0.10"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Adrien Seon",
+  "license": "ISC"
+}
