@@ -4,8 +4,8 @@
   "description": "Detection du telephone pour allumer les lampes de l'appartement",
   "main": "app.js",
   "dependencies": {
-    "net-ping": "^1.2.3",
-    "node-hue-api": "^4.0.10"
+    "node-hue-api": "^4.0.10",
+    "ping": "^0.4.0"
   },
   "devDependencies": {},
   "scripts": {
