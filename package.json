@@ -9,8 +9,10 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start-prod": "NODE_ENV=production node app.js",
+    "start-dev": "NODE_ENV=development node app.js"
   },
-  "author": "Adrien Seon",
+  "author": "Adrien Séon",
   "license": "ISC"
 }

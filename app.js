@@ -15,65 +15,70 @@ const GroupLightState = v3.lightStates.GroupLightState;
 const LightState = v3.lightStates.LightState;
 
 
-doPing();
+pingPhone();
 
-function doPing() {
+function pingPhone() {
     session.pingHost (phoneIp, function (error, target) {
         if (error){
             if (error instanceof ping.RequestTimedOutError){
-                // console.log (target + ": Not alive");
+                if(process.env.NODE_ENV === 'development') {
+                    console.log (target + ": Not alive");
+                };
                 occupancy = "away";
                 firstOccupancy = true;
-                setTimeout(doPing, awayRepeatTimer*1000);
+                setTimeout(pingPhone, awayRepeatTimer*1000);
             }
             else{
-                // console.log (target + ": " + error.toString ());
+                if(process.env.NODE_ENV === 'development') {
+                    console.log (target + ": " + error.toString ());
+                };
                 occupancy = "away";
                 firstOccupancy = true;
-                setTimeout(doPing, awayRepeatTimer*1000);
+                setTimeout(pingPhone, awayRepeatTimer*1000);
             }
         } else {
-            // console.log (target + ": Alive");
+            if(process.env.NODE_ENV === 'development') {
+                console.log (target + ": Alive");
+            };
             occupancy = "home";
             if(firstOccupancy) {
                 lightsOn();
                 firstOccupancy = false;
             }
-            setTimeout(doPing, homeRepeatTimer*1000);
+            setTimeout(pingPhone, homeRepeatTimer*1000);
         }
-        // console.log(occupancy)
-    });
-}
+        if(process.env.NODE_ENV === 'development') {
+            console.log(occupancy);
+        };
+    })
+;}
 
 
 function lightsOn() {
     // id: 8 = lampe de la télé
     hue.createLocal(host).connect(USERNAME)
-    .then(api => {
-        // Using a LightState object to build the desired state
-        const state = new LightState().on()
-        return api.lights.setLightState(8, state);
-    })
+        .then(api => {
+            const state = new LightState().on()
+            return api.lights.setLightState(8, state);
+        })
     ;
 
     // id: 9 = bandeau
     hue.createLocal(host).connect(USERNAME)
-    .then(api => {
-        // Using a LightState object to build the desired state
-        const state = new LightState().on()
-        return api.lights.setLightState(9, state);
-    })
+        .then(api => {
+            const state = new LightState().on()
+            return api.lights.setLightState(9, state);
+        })
     ;
 
     // id: 1 = Groupe Salon
     hue.createLocal(host).connect(USERNAME)
-    .then(api => {
-        const salonState = new GroupLightState()
-            .on()
-            .brightness(100)
-        ;
-        return api.groups.setGroupState(1, salonState);
-    })
+        .then(api => {
+            const salonState = new GroupLightState()
+                .on()
+                .brightness(100);
+            return api.groups.setGroupState(1, salonState);
+        })
     ;
 }
 
